@@ -1,0 +1,157 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "",
+        "version": ""
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/basic/{language}/": {
+            "get": {
+                "tags": [
+                    "BASIC"
+                ],
+                "summary": "Get basic setting and menu",
+                "description": "Get basic setting and menue",
+                "operationId": "getBasic",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "Language",
+                        "required": true,
+                        "example": "ua"
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong email address or password. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subscribe": {
+            "post": {
+                "tags": [
+                    "FORMS"
+                ],
+                "summary": "Subscribe Form",
+                "description": "Subscribe Form",
+                "operationId": "subscribeForm",
+                "requestBody": {
+                    "description": "Send email",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "name",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "description": "Email",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "petya@ivanov.com"
+                                    },
+                                    "name": {
+                                        "description": "Name",
+                                        "type": "string",
+                                        "example": "Petya"
+                                    },
+                                    "message": {
+                                        "description": "Message",
+                                        "type": "string",
+                                        "example": "Help me!"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong email address or password. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pages/{language}/{page}": {
+            "get": {
+                "tags": [
+                    "PAGES"
+                ],
+                "summary": "Get settings and blocks for current page",
+                "description": "Show settings and blocks for current page",
+                "operationId": "showPageinfo",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "Language",
+                        "required": true,
+                        "example": "ua"
+                    },
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Link to the page",
+                        "required": true,
+                        "example": "index"
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong email address or password. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
